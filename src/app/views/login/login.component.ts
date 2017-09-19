@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
 
-import { Post } from './state/posts';
-import { User } from './state/users';
+import { Post } from '../../state/posts';
+import { User } from '../../state/users';
 
-import { UserFacade } from './state/users/user.facade';
-import { PostsFacade } from './state/posts/post.facade';
+import { UserFacade } from '../../state/users/user.facade';
+import { PostsFacade } from '../../state/posts/post.facade';
+
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.sass']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class AppComponent {
-  title = 'app';
 
+export class LoginComponent {
   post$: Observable<Post> = this.postService.post$;
   user$: Observable<User> = this.userService.user$;
 
