@@ -6,6 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./sidebar.component.sass']
 })
 export class SidebarComponent implements OnInit {
+  collapsedMenu = false;
+
+  sideNavToggle() {
+    this.collapsedMenu = !this.collapsedMenu;
+  }
 
   constructor() { }
 

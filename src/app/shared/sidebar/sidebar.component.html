@@ -1,3 +1,15 @@
-<p>
-  sidebar works!
-</p>
+<div class="side-menu" [class.collapsed]="collapsedMenu">
+  <div class="menu-wrapper">
+    <h2>
+      Navigate
+    </h2>
+
+    <ul>
+      <li><a routerLink="/" routerLinkActive="active-item"><i class="icon-analytics"></i><span>Item1</span></a></li>
+      <li><a routerLink="/" routerLinkActive="active-item"><i class="icon-news"></i><span>Item2</span></a></li>
+      <li><a routerLink="/" routerLinkActive="active-item"><i class="icon-boardbrief"></i><span>Item3</span></a></li>
+      <li><a routerLink="/" routerLinkActive="active-item"><i class="icon-briefcase"></i><span>Item4</span></a></li>
+      <li class="close-menu"><a (click)="sideNavToggle()"><i class="icon-close"></i><span>Close menu</span></a></li>
+    </ul>
+  </div>
+</div>
