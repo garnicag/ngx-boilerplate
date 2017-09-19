@@ -14,13 +14,13 @@ export namespace PostsQuery {
 export function postReducer(state: Post, action: Action) {
   switch (action.type) {
     case PostActions.GET_POST:
-      return { ...state, loading: true, shit: true };
+      return { ...state, loading: true };
 
     case PostActions.GET_POST_SUCCESS:
-      return { ...state, ...action.payload, loading: false, shit: true };
+      return { ...state, ...action.payload, loading: false };
 
     case PostActions.VOTE_UPDATE:
-      return { ...state, ...action.payload, loading: true, shit: false };
+      return { ...state, ...action.payload, loading: true };
 
     case PostActions.VOTE_SUCCESS:
       return { ...state, loading: false };
