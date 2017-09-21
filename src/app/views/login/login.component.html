@@ -1,5 +1,5 @@
 <div *ngIf="user$ | async as user">
-    <h3>Hello, Mr. {{ user.displayName }}</h3>
+    <h3>Hello, {{ user.displayName }}</h3>
     <h4>{{ user.uid }}</h4>
 
     <button class="button is-danger" *ngIf="!user.uid" (click)="login()" [class.is-loading]="user.loading">

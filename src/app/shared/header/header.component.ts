@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
+import { Store } from '@ngrx/store';
 
-import { User } from '../../state/users';
-import { UserFacade } from '../../state/users/user.facade';
+//import { User } from '../../state/users';
+//import { UserFacade } from '../../state/users/user.facade';
+import { PostsQuery } from '../../state/posts/post.reducer';
+import { AppState }  from '../../state/state';
 
 @Component({
   selector: 'app-header',
@@ -11,9 +14,9 @@ import { UserFacade } from '../../state/users/user.facade';
 })
 
 export class HeaderComponent implements OnInit {
-  user$: Observable<User> = this.userService.user$;
+  post$ = this.store.select(PostsQuery.getPost);
 
-  constructor(private userService:UserFacade) { }
+  constructor(private store: Store<AppState>) {}
 
   ngOnInit() {
   }
