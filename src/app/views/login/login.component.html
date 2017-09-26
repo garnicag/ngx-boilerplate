@@ -1,13 +1,24 @@
-<div *ngIf="user$ | async as user">
-    <h3>Hello, {{ user.displayName }}</h3>
-    <h4>{{ user.uid }}</h4>
-
-    <button class="button is-danger" *ngIf="!user.uid" (click)="login()" [class.is-loading]="user.loading">
-        <span class="icon">
-        <i class="fa fa-google"></i>
-        </span>
-        <span>Sign In with Google</span>
-    </button>
-
-    <button (click)="logout()" *ngIf="user.uid" class="button is-warn">Logout</button>
+<div class="col-md-6 col-md-offset-3">
+  <div class="alert alert-success">
+    <strong>Username:</strong> test<br />
+    <strong>Password:</strong> passwd
+  </div>
+  <h2>Login</h2>
+  <form name="form" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+      <label for="username">Username</label>
+      <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel" required />
+      <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+    </div>
+    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+      <label for="password">Password</label>
+      <input type="password" class="form-control" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+      <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+    </div>
+    <div class="form-group">
+      <button [disabled]="loading" class="btn btn-primary">Login</button>
+      <div class="loading" *ngIf="loading"></div>
+    </div>
+    <div *ngIf="error" class="alert alert-danger">Username or password is incorrect</div>
+  </form>
 </div>

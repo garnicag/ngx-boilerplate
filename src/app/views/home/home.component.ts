@@ -1,19 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable }  from 'rxjs/Observable';
-import { Store } from '@ngrx/store';
 
 import { User } from '../../utils/models/';
 import { UserService } from '../../utils/services/';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.sass']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.sass']
 })
-
-export class HeaderComponent implements OnInit {
+export class HomeComponent implements OnInit {
   users: User[] = [];
-  userIsAuth: false;
 
   constructor(private userService: UserService) { }
 

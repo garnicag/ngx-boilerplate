@@ -1,11 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
-
-import { Post } from './state/posts';
-import { User } from './state/users';
-
-import { UserFacade } from './state/users/user.facade';
-import { PostsFacade } from './state/posts/post.facade';
+import { AuthenticationService } from './utils/services/index';
 
 @Component({
   selector: 'app-root',
@@ -14,16 +9,12 @@ import { PostsFacade } from './state/posts/post.facade';
 })
 export class AppComponent {
   title = 'app';
+  loggedIn = true;
 
-  post$: Observable<Post> = this.postService.post$;
-  user$: Observable<User> = this.userService.user$;
+  post = {
+    loading: true
+  };
 
-  constructor(private userService:UserFacade, private postService:PostsFacade) { }
+  constructor() { }
 
-  login() { this.userService.login(); }
-  logout() { this.userService.logout(); }
-
-  vote(post: Post, val: number) {
-    this.postService.vote(post, val);
-  }
 }

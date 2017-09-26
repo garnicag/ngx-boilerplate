@@ -1,23 +1,9 @@
 <app-header></app-header>
 
 <div class="app-wrapper">
-  <app-sidebar *ngIf="post$ | async as post"></app-sidebar>
+  <app-sidebar *ngIf="loggedIn"></app-sidebar>
   
   <div class="content">
     <router-outlet></router-outlet>
-
-    <app-login></app-login>
-    
-    {{ post$ | async }}
-    
-    <div *ngIf="post$ | async as post">
-        <i *ngIf="post.loading" class="fa fa-spin fa-refresh"></i>
-        <h2>{{ post.text }}</h2>
-        <h4>Votes: <span class="tag is-info is-large">{{ post.votes }}</span></h4>
-        <hr>
-        <button (click)="vote(post, 1)" class="button is-success">Upvote</button>
-        <button (click)="vote(post, -1)" class="button is-danger">Downvote</button>
-    </div>
-
   </div>
 </div>

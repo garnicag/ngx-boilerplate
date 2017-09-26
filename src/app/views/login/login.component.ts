@@ -1,29 +1,41 @@
 import { Component } from '@angular/core';
 import { Observable }  from 'rxjs/Observable';
 
-import { Post } from '../../state/posts';
-import { User } from '../../state/users';
+import { Router } from '@angular/router';
 
-import { UserFacade } from '../../state/users/user.facade';
-import { PostsFacade } from '../../state/posts/post.facade';
-
+import { AuthenticationService } from '../../utils/services/';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.sass']
 })
 
 export class LoginComponent {
-  post$: Observable<Post> = this.postService.post$;
-  user$: Observable<User> = this.userService.user$;
+  model: any = {};
+  loading = false;
+  error = false;
 
-  constructor(private userService:UserFacade, private postService:PostsFacade) { }
+  constructor(
+    private router: Router,
+    private authenticationService: AuthenticationService) { }
 
-  login() { this.userService.login(); }
-  logout() { this.userService.logout(); }
-
-  vote(post: Post, val: number) {
-    this.postService.vote(post, val);
+  ngOnInit() {
+    // reset login status
+    this.authenticationService.logout();
   }
+
+  login() {
+    this.loading = true;
+    this.authenticationService.login(this.model.username, this.model.password)
+      .subscribe(result => {
+        if (result === true) {
+          this.router.navigate(['/']);
+        } else {
+          this.error = true;
+          this.loading = false;
+        }
+      });
+  }
+ 
 }
